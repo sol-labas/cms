@@ -1,5 +1,5 @@
 <?php
-include_once "includes/header.php";
+include_once "includes/admin_header.php";
 ?>
     <div id="wrapper">
 
@@ -11,7 +11,7 @@ if ($conn){
 
         <!-- Navigation -->
     <?php
-    include_once "includes/navigation.php";
+    include_once "includes/admin_navigation.php";
     ?>
         <div id="page-wrapper">
 
@@ -35,5 +35,5 @@ if ($conn){
         </div>
         <!-- /#page-wrapper -->
 <?php
-include_once "includes/footer.php";
+include_once "includes/admin_footer.php";
 ?>

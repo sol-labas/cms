@@ -1,11 +1,11 @@
 <?php
-include_once "includes/header.php";
+include_once "includes/admin_header.php";
 ?>
 <div id="wrapper">
 
     <!-- Navigation -->
     <?php
-    include_once "includes/navigation.php";
+    include_once "includes/admin_navigation.php";
     ?>
     <div id="page-wrapper">
 
@@ -32,6 +32,14 @@ include_once "includes/header.php";
 
                     </div><!--Add Category Form-->
                     <div class="col-xs-6">
+                        <?php
+
+                        $query = "SELECT * FROM category";
+                        $select_cat = mysqli_query($conn, $query);
+
+                        ?>
+
+
                         <table class="table table-bordered table-hover">
                             <thread>
                                 <tr>
@@ -41,8 +49,17 @@ include_once "includes/header.php";
                             </thread>
                             <tbody>
                             <tr>
-                                <td>Baseball Category</td>
-                                <td>Basketball Category</td>
+                                <?php
+                                while ($row = mysqli_fetch_assoc($select_cat)) {
+                                    $cat_id = $row['cat_id'];
+                                    $cat_title = $row['cat_title'];
+
+                                    echo "<tr>";
+                                    echo "<td>{$cat_id}</td>";
+                                    echo "<td>{$cat_title}</td>";
+                                    echo "</tr>";
+                                }
+                                ?>
                             </tr>
                             </tbody>
                         </table>
@@ -57,5 +74,5 @@ include_once "includes/header.php";
         </div>
         <!-- /#page-wrapper -->
         <?php
-        include_once "includes/footer.php";
+        include_once "includes/admin_footer.php";
         ?>
