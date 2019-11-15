@@ -3,6 +3,12 @@ include_once "includes/header.php";
 ?>
     <div id="wrapper">
 
+<?php
+if ($conn){
+    echo "connected";
+}
+?>
+
         <!-- Navigation -->
     <?php
     include_once "includes/navigation.php";
