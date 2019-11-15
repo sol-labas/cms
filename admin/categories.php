@@ -30,7 +30,24 @@ include_once "includes/header.php";
 
                         </form>
 
+                    </div><!--Add Category Form-->
+                    <div class="col-xs-6">
+                        <table class="table table-bordered table-hover">
+                            <thread>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Category Title</th>
+                                </tr>
+                            </thread>
+                            <tbody>
+                            <tr>
+                                <td>Baseball Category</td>
+                                <td>Basketball Category</td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
+
                 </div>
                 <!-- /.row -->
 
