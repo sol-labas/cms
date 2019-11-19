@@ -19,22 +19,7 @@ include_once "includes/admin_header.php";
                         <small>Authors</small>
                     </h1>
                     <div class="col-xs-6">
-                        <?php
-                        if(isset($_POST['submit'])){
-                            $cat_title = $_POST['cat_title'];
-                            if ($cat_title==''||empty($cat_title)){
-                                echo "Fill the field";
-                            }else{
-                                $query = "INSERT INTO category(cat_title) VALUE ('$cat_title')";
-                                $create_cat = mysqli_query($conn, $query);
-                                if(!$create_cat){
-                                    die("Query failed") . mysqli_error($conn);
-                                }
-
-                            }
-                        }
-
-                        ?>
+                        <?php insert_categories(); ?>
 
                         <form action="" method="post">
                             <div class="form-group">
@@ -48,7 +33,7 @@ include_once "includes/admin_header.php";
                         </form>
                         <?php
 
-                        if(isset($_GET['edit'])){
+                        if (isset($_GET['edit'])) {
                             $cat_id = $_GET['edit'];
                             include "includes/edit_categories.php";
                         }
@@ -91,7 +76,7 @@ include_once "includes/admin_header.php";
 
 
                                 <?php
-                                if(isset($_GET['delete'])){
+                                if (isset($_GET['delete'])) {
                                     $the_cat_id = $_GET['delete'];
                                     $query = "DELETE FROM category WHERE cat_id = {$the_cat_id}";
                                     $delete_cat = mysqli_query($conn, $query);
