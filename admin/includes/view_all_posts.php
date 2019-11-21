@@ -34,7 +34,7 @@
         echo "<td>{$post_title}</td>";
         echo "<td>{$post_category}</td>";
         echo "<td>{$post_status}</td>";
-        echo "<td><img class='img-responsive' src='../$post_image'></td>";
+        echo "<td><img width='100' src='../$post_image'></td>";
         echo "<td>{$post_tags}</td>";
         echo "<td>{$post_comments}</td>";
         echo "<td>{$post_date}</td>";
