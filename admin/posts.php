@@ -25,8 +25,8 @@ include_once "includes/admin_header.php";
                         $source='';
                     }
                     switch ($source) {
-                        case'1';
-                            echo "nice1";
+                        case'add_post';
+                            include "includes/add_post.php";
                             break;
 
                         case'2';
