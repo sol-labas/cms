@@ -12,6 +12,11 @@ if(isset($_POST['create_post'])){
     $post_comment_count = 4;
 
     move_uploaded_file($post_image_temp, "../images/$post_image");
+
+    $query = "INSERT INTO post (post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_comm_count, post_status) VALUES ('{$post_category_id}', '{$post_title}', '{$post_author}', now(), '{$post_image}', '{$post_content}', '{$post_tags}', '{$post_comment_count}', '{$post_status}') ";
+    $create_post_query = mysqli_query($conn, $query);
+
+    confirm($create_post_query);
 }
 ?>
 

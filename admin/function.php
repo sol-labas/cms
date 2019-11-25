@@ -1,4 +1,11 @@
 <?php
+function confirm ($result){
+    global $conn;
+    if (!$result){
+        die("FAILED" . mysqli_error($conn));
+    }
+
+}
 
 function insert_categories()
 {
