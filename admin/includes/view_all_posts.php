@@ -34,11 +34,11 @@
         echo "<td>{$post_title}</td>";
         echo "<td>{$post_category}</td>";
         echo "<td>{$post_status}</td>";
-        echo "<td><img width='100' src='../$post_image'></td>";
+        echo "<td><img width='100' src='../images/$post_image'></td>";
         echo "<td>{$post_tags}</td>";
         echo "<td>{$post_comments}</td>";
         echo "<td>{$post_date}</td>";
-        echo "<td><a href='categories.php?delete={$post_id}'>Delete</a></td>";
+        echo "<td><a href='posts.php?delete={$post_id}'>Delete</a></td>";
         echo "<td><a href='categories.php?edit={$post_id}'>Edit</a></td>";
         echo "</tr>";
     }
@@ -48,3 +48,12 @@
     </tbody>
 
 </table>
+
+<?php
+if (isset($_GET['delete'])){
+    $the_post_id = $_GET['delete'];
+    $query = "DELETE FROM post WHERE post_id = {$the_post_id}";
+    $delete_post = mysqli_query($conn, $query);
+    header("location: posts.php");
+}
+?>
