@@ -29,8 +29,8 @@ include_once "includes/admin_header.php";
                             include "includes/add_post.php";
                             break;
 
-                        case'2';
-                            echo "nice2";
+                        case'edit_post';
+                            include "includes/edit_post.php";
                             break;
 
                         case'3';
