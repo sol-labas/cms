@@ -55,6 +55,7 @@ if (isset($_POST['update_post'])) {
 
     <div class="form-group">
         <label for="post_category_id">Post Category</label>
+        <br>
         <select name="post_category_id" id="post_category_id">
             <?php
 
@@ -67,13 +68,8 @@ if (isset($_POST['update_post'])) {
                 $cat_title = $row['cat_title'];
 
                 echo "<option value='{$cat_id}'>{$cat_title}</option>";
-
             }
-
-
             ?>
-
-
         </select>
     </div>
 
