@@ -21,7 +21,7 @@
         $post_id = (int)$row['post_id'];
         $post_author = $row['post_author'];
         $post_title = $row['post_title'];
-        $post_category = $row['post_category_id'];
+        $post_category_id = $row['post_category_id'];
         $post_status = $row['post_status'];
         $post_image = $row['post_image'];
         $post_tags = $row['post_tags'];
@@ -34,7 +34,14 @@
         echo "<td>{$post_id}</td>";
         echo "<td>{$post_author}</td>";
         echo "<td>{$post_title}</td>";
-        echo "<td>{$post_category}</td>";
+
+        $query = "SELECT * FROM category WHERE cat_id = '$post_category_id'";
+        $select_cat_id = mysqli_query($conn, $query);
+        while ($row = mysqli_fetch_assoc($select_cat_id)) {
+            $cat_id = $row['cat_id'];
+            $cat_title = $row['cat_title'];
+         echo "<td>{$cat_title}</td>";
+        }
         echo "<td>{$post_status}</td>";
         echo "<td><img width='100' src='../images/$post_image'></td>";
         echo "<td>{$post_tags}</td>";
@@ -53,7 +60,7 @@
 </table>
 
 <?php
-if (isset($_GET['delete'])){
+if (isset($_GET['delete'])) {
     $the_post_id = $_GET['delete'];
     $query = "DELETE FROM post WHERE post_id = {$the_post_id}";
     $delete_post = mysqli_query($conn, $query);
