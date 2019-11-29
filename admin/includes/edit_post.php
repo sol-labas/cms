@@ -36,7 +36,6 @@ if (isset($_POST['update_post'])) {
         while ($row = mysqli_fetch_assoc($select_image)) {
             $post_image = $row['post_image'];
         }
-
     }
 
     $query = "UPDATE post SET post_category_id ='{$post_category_id}', post_title = '{$post_title}', post_author ='{$post_author}', post_date = now(), post_image = '{$post_image}', post_content ='{$post_content}', post_tags = '{$post_tags}', post_status = '{$post_status}' WHERE post_id = {$post_id }";
