@@ -15,10 +15,17 @@ include_once "includes/navigation.php";
         <!-- Blog Entries Column -->
         <div class="col-md-8">
             <?php
-            $query = "SELECT * FROM post";
+
+            if(isset($_GET['p_id'])){
+                $the_post_id = $_GET['p_id'];
+            }
+
+            $query = "SELECT * FROM post WHERE post_id = {$the_post_id}";
+
             $all_post = mysqli_query($conn, $query);
 
             while($row = mysqli_fetch_assoc($all_post)){
+                $post_id = $row['post_id'];
                 $post_title = $row['post_title'];
                 $post_author = $row['post_author'];
                 $post_date = $row['post_date'];
@@ -92,7 +99,7 @@ include_once "includes/navigation.php";
             </div>
 
 
-            
+
 
         </div>
 

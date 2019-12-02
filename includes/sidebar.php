@@ -26,7 +26,6 @@
         $query = "SELECT * FROM category";
         $cat_sidebar = mysqli_query($conn, $query);
 
-
         ?>
 
         <h4>Blog Categories</h4>
@@ -38,9 +37,10 @@
 
                     <?php
                     while ($row = mysqli_fetch_assoc($cat_sidebar)) {
+                        $cat_id = $row['cat_id'];
                         $cat_title = $row['cat_title'];
 
-                        echo "<li><a href='#'>{$cat_title}</a> </li>";
+                        echo "<li><a href='category.php?category=$cat_id'>{$cat_title}</a> </li>";
                     }
 
                     ?>

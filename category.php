@@ -15,7 +15,13 @@ include_once "includes/navigation.php";
             <!-- Blog Entries Column -->
             <div class="col-md-8">
 <?php
-        $query = "SELECT * FROM post";
+
+if(isset($_GET['category'])){
+    $post_category_id = $_GET['category'];
+
+
+}
+        $query = "SELECT * FROM post WHERE post_cat";
         $all_post = mysqli_query($conn, $query);
 
         while($row = mysqli_fetch_assoc($all_post)){
