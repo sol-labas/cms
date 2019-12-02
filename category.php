@@ -21,7 +21,7 @@ if(isset($_GET['category'])){
 
 
 }
-        $query = "SELECT * FROM post WHERE post_cat";
+        $query = "SELECT * FROM post WHERE post_category_id = $post_category_id";
         $all_post = mysqli_query($conn, $query);
 
         while($row = mysqli_fetch_assoc($all_post)){
