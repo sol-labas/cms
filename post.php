@@ -56,7 +56,33 @@ include_once "includes/navigation.php";
 
                 <?php
             }
+            if(isset($_POST['create_comm'])){
+
+            }
+
             ?>
+            <!-- Comments Form -->
+            <div class="well">
+                <h4>Leave a Comment:</h4>
+                <form action="" method="post" role="form">
+                    <div class="form-group">
+                        <label for="comm_author">Name</label>
+                        <input type="text" class="form-control" name="comm_author">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="comm_email">Email</label>
+                        <input type="email" class="form-control" name="comm_email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="comm_content">Comment</label>
+                        <textarea class="form-control" name="comm_content" rows="3"></textarea>
+                    </div>
+                    <button type="submit" name="create_comm" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+
             <!-- Posted Comments -->
 
             <!-- Comment -->

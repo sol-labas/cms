@@ -46,7 +46,6 @@
         echo "<td><a href='posts.php?approve={$comm_id}'>Approve</a></td>";
         echo "<td><a href='posts.php?unapproved={$comm_id}'>Unapproved</a></td>";
         echo "<td><a href='posts.php?delete={$comm_id}'>Delete</a></td>";
-        echo "<td><a href='posts.php?source=edit_post&p_id={$comm_id}'>Edit</a></td>";
         echo "</tr>";
     }
 
