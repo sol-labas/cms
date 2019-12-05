@@ -32,27 +32,24 @@
         echo "<td>{$comm_id}</td>";
         echo "<td>{$comm_author}</td>";
         echo "<td>{$comm_content}</td>";
-
-      //  $query = "SELECT * FROM category WHERE cat_id = '$post_category_id'";
-      //  $select_cat_id = mysqli_query($conn, $query);
-      //  while ($row = mysqli_fetch_assoc($select_cat_id)) {
-        //    $cat_id = $row['cat_id'];
-       //     $cat_title = $row['cat_title'];
-       //     echo "<td>{$cat_title}</td>";
-      //  }
         echo "<td>{$comm_email}</td>";
         echo "<td>{$comm_status}</td>";
+
+        $query = "SELECT * FROM post WHERE post_id = $comm_post_id";
+        $select_post_id = mysqli_query($conn, $query);
+        while ($row = mysqli_fetch_assoc($select_post_id)) {
+            $post_id = $row['post_id'];
+            $post_title = $row['post_title'];
+            echo "<td><a href='../post.php?p_id={$post_id}'>{$post_title}</a></td>";
+        }
         echo "<td>{$comm_date}</td>";
         echo "<td><a href='posts.php?approve={$comm_id}'>Approve</a></td>";
         echo "<td><a href='posts.php?unapproved={$comm_id}'>Unapproved</a></td>";
         echo "<td><a href='posts.php?delete={$comm_id}'>Delete</a></td>";
         echo "</tr>";
     }
-
     ?>
-
     </tbody>
-
 </table>
 
 <?php

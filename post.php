@@ -1,6 +1,7 @@
 <?php
 include_once "includes/header.php";
 include_once "includes/db.php";
+include_once "admin/function.php";
 ?>
     <!-- Navigation -->
 <?php
@@ -65,10 +66,8 @@ include_once "includes/navigation.php";
 
                 $query = "INSERT INTO comment (comm_post_id, comm_author, comm_email, comm_content, comm_date) VALUES ('{$the_post_id}', '{$comm_author}', '{$comm_email}', '{$comm_content}', now()) ";
                 $create_comm_query = mysqli_query($conn, $query);
-if(!$create_comm_query){
-    die('Query failed' . mysqli_error($conn));
-}
 
+                confirm($create_comm_query);
 
             }
 
