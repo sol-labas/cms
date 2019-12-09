@@ -69,6 +69,11 @@ include_once "includes/navigation.php";
 
                 confirm($create_comm_query);
 
+                $query = "UPDATE post SET post_comm_count = post_comm_count+1 WHERE post_id = {$the_post_id}";
+                $update_comm_count = mysqli_query($conn, $query);
+
+                confirm($update_comm_count);
+
             }
 
             ?>
