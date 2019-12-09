@@ -43,9 +43,9 @@
             echo "<td><a href='../post.php?p_id={$post_id}'>{$post_title}</a></td>";
         }
         echo "<td>{$comm_date}</td>";
-        echo "<td><a href='posts.php?approve={$comm_id}'>Approve</a></td>";
-        echo "<td><a href='posts.php?unapproved={$comm_id}'>Unapproved</a></td>";
-        echo "<td><a href='posts.php?delete={$comm_id}'>Delete</a></td>";
+        echo "<td><a href='comments.php?approve={$comm_id}'>Approve</a></td>";
+        echo "<td><a href='comments.php?unapproved={$comm_id}'>Unapproved</a></td>";
+        echo "<td><a href='comments.php?delete={$comm_id}'>Delete</a></td>";
         echo "</tr>";
     }
     ?>
@@ -54,9 +54,9 @@
 
 <?php
 if (isset($_GET['delete'])) {
-    $the_post_id = $_GET['delete'];
-    $query = "DELETE FROM post WHERE post_id = {$the_post_id}";
+    $the_comm_id = $_GET['delete'];
+    $query = "DELETE FROM comment WHERE comm_id = {$the_comm_id}";
     $delete_post = mysqli_query($conn, $query);
-    header("location: posts.php");
+    header("location: comments.php");
 }
 ?>
