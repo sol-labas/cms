@@ -62,7 +62,7 @@ if (isset($_GET['unapproved'])) {
 
 if (isset($_GET['approve'])) {
     $the_comm_id = $_GET['approve'];
-    $query = "UPDATE comment SET comm_status = 'approve' WHERE comm_id = {$the_comm_id}";
+    $query = "UPDATE comment SET comm_status = 'approved' WHERE comm_id = {$the_comm_id}";
     $approve_comm = mysqli_query($conn, $query);
     header("location: comments.php");
 }
