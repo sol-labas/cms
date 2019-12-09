@@ -53,10 +53,24 @@
 </table>
 
 <?php
+if (isset($_GET['unapproved'])) {
+    $the_comm_id = $_GET['unapproved'];
+    $query = "UPDATE comment SET comm_status = 'unapproved' WHERE comm_id = {$the_comm_id}";
+    $unapproved_comm = mysqli_query($conn, $query);
+    header("location: comments.php");
+}
+
+if (isset($_GET['approve'])) {
+    $the_comm_id = $_GET['approve'];
+    $query = "UPDATE comment SET comm_status = 'approve' WHERE comm_id = {$the_comm_id}";
+    $approve_comm = mysqli_query($conn, $query);
+    header("location: comments.php");
+}
+
 if (isset($_GET['delete'])) {
     $the_comm_id = $_GET['delete'];
     $query = "DELETE FROM comment WHERE comm_id = {$the_comm_id}";
-    $delete_post = mysqli_query($conn, $query);
+    $delete_comm = mysqli_query($conn, $query);
     header("location: comments.php");
 }
 ?>
