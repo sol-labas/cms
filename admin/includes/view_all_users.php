@@ -13,16 +13,18 @@
     </thead>
     <tbody>
     <?php
-    $query = "SELECT * FROM comment";
-    $select_comm = mysqli_query($conn, $query);
-    while ($row = mysqli_fetch_assoc($select_comm)) {
-        $comm_id = (int)$row['comm_id'];
-        $comm_post_id = $row['comm_post_id'];
-        $comm_author = $row['comm_author'];
-        $comm_content = $row['comm_content'];
-        $comm_email = $row['comm_email'];
-        $comm_status = $row['comm_status'];
-        $comm_date = $row['comm_date'];
+    $query = "SELECT * FROM user";
+    $select_users = mysqli_query($conn, $query);
+    while ($row = mysqli_fetch_assoc($select_users)) {
+        $user_id = (int)$row['user_id'];
+        $username = $row['username'];
+        $first_name = $row['first_name'];
+        $last_name = $row['last_name'];
+        $email = $row['email'];
+        $user_image = $row['user_image'];
+        $role = $row['role'];
+        $date = $row['comm_date'];
+
 
 
         echo "<tr>";
