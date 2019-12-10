@@ -8,7 +8,6 @@
         <th>Email</th>
         <th>User_Image</th>
         <th>Role</th>
-        <th>Date</th>
     </tr>
     </thead>
     <tbody>
@@ -23,28 +22,18 @@
         $email = $row['email'];
         $user_image = $row['user_image'];
         $role = $row['role'];
-        $date = $row['comm_date'];
-
 
 
         echo "<tr>";
-        echo "<td>{$comm_id}</td>";
-        echo "<td>{$comm_author}</td>";
-        echo "<td>{$comm_content}</td>";
-        echo "<td>{$comm_email}</td>";
-        echo "<td>{$comm_status}</td>";
-
-        $query = "SELECT * FROM post WHERE post_id = $comm_post_id";
-        $select_post_id = mysqli_query($conn, $query);
-        while ($row = mysqli_fetch_assoc($select_post_id)) {
-            $post_id = $row['post_id'];
-            $post_title = $row['post_title'];
-            echo "<td><a href='../post.php?p_id={$post_id}'>{$post_title}</a></td>";
-        }
-        echo "<td>{$comm_date}</td>";
-        echo "<td><a href='comments.php?approve={$comm_id}'>Approve</a></td>";
-        echo "<td><a href='comments.php?unapproved={$comm_id}'>Unapproved</a></td>";
-        echo "<td><a href='comments.php?delete={$comm_id}'>Delete</a></td>";
+        echo "<td>{$user_id}</td>";
+        echo "<td>{$username}</td>";
+        echo "<td>{$first_name}</td>";
+        echo "<td>{$last_name}</td>";
+        echo "<td>{$email}</td>";
+        echo "<td>{$user_image}</td>";
+        echo "<td>{$role}</td>";
+        echo "<td></td>";
+        echo "<td><a href='users.php?delete={$user_id}'>Delete</a></td>";
         echo "</tr>";
     }
     ?>
@@ -52,19 +41,6 @@
 </table>
 
 <?php
-if (isset($_GET['unapproved'])) {
-    $the_comm_id = $_GET['unapproved'];
-    $query = "UPDATE comment SET comm_status = 'unapproved' WHERE comm_id = {$the_comm_id}";
-    $unapproved_comm = mysqli_query($conn, $query);
-    header("location: comments.php");
-}
-
-if (isset($_GET['approve'])) {
-    $the_comm_id = $_GET['approve'];
-    $query = "UPDATE comment SET comm_status = 'approved' WHERE comm_id = {$the_comm_id}";
-    $approve_comm = mysqli_query($conn, $query);
-    header("location: comments.php");
-}
 
 if (isset($_GET['delete'])) {
     $the_comm_id = $_GET['delete'];
