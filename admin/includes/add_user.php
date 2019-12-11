@@ -11,9 +11,9 @@ if(isset($_POST['create_user'])){
     $user_image = $_POST['user_image'];
    // $post_date = date('d-m-y');
 
-    move_uploaded_file($user_image_temp, "../images/$user_image");
+    //move_uploaded_file($user_image_temp, "../images/$user_image");
 
-    $query = "INSERT INTO user (username, password, firstname, lastname, email, user_image, role ) VALUES ('{$username}', '{$password}', '{$first_name}', '{$last_name}', '{$email}', '{$user_image}', '{$role}') ";
+    $query = "INSERT INTO user (username, password, first_name, last_name, email, user_image, role ) VALUES ('{$username}', '{$password}', '{$first_name}', '{$last_name}', '{$email}', '{$user_image}', '{$role}')";
     $create_user_query = mysqli_query($conn, $query);
 
     confirm($create_user_query);
@@ -46,8 +46,8 @@ if(isset($_POST['create_user'])){
     </div>
 
     <div class="form-group">
-        <label for="post_image">Post Image</label>
-        <input type="file" name="post_image">
+        <label for="user_image">Avatar</label>
+        <input type="file" name="user_image">
     </div>
 
     <div class="form-group">
