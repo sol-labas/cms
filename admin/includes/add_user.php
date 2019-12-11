@@ -9,14 +9,14 @@ if(isset($_POST['create_user'])){
     $password = $_POST['password'];
     $user_image_temp = $_FILES['user_image']['tmp_name'];
     $user_image = $_POST['user_image'];
-    $post_date = date('d-m-y');
+   // $post_date = date('d-m-y');
 
     move_uploaded_file($user_image_temp, "../images/$user_image");
 
-    $query = "INSERT INTO user (post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_status) VALUES ('{$post_category_id}', '{$post_title}', '{$post_author}', now(), '{$post_image}', '{$post_content}', '{$post_tags}', '{$post_status}') ";
-    $create_post_query = mysqli_query($conn, $query);
+    $query = "INSERT INTO user (username, password, firstname, lastname, email, user_image, role ) VALUES ('{$username}', '{$password}', '{$first_name}', '{$last_name}', '{$email}', '{$user_image}', '{$role}') ";
+    $create_user_query = mysqli_query($conn, $query);
 
-    confirm($create_post_query);
+    confirm($create_user_query);
 }
 ?>
 
