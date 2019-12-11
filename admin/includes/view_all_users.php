@@ -43,15 +43,12 @@
 <?php
 
 if (isset($_GET['delete'])) {
-    $the_comm_id = $_GET['delete'];
-    $query = "DELETE FROM comment WHERE comm_id = {$the_comm_id}";
-    $delete_comm = mysqli_query($conn, $query);
-    header("location: comments.php");
+    $the_user_id = $_GET['delete'];
+    $query = "DELETE FROM user WHERE user_id = {$the_user_id}";
+    $delete_user = mysqli_query($conn, $query);
+    header("location: users.php");
 
-    $query = "UPDATE post SET post_comm_count = post_comm_count-1 WHERE post_id = {$comm_post_id}";
-    $update_comm_count = mysqli_query($conn, $query);
-
-    confirm($update_comm_count);
+    confirm($delete_user);
 }
 ?>
 
