@@ -8,6 +8,9 @@
         <th>Email</th>
         <th>User_Image</th>
         <th>Role</th>
+        <th>Grant admin</th>
+        <th>Withdraw admin</th>
+        <th>Delete</th>
     </tr>
     </thead>
     <tbody>
@@ -32,7 +35,8 @@
         echo "<td>{$email}</td>";
         echo "<td>{$user_image}</td>";
         echo "<td>{$role}</td>";
-        echo "<td></td>";
+        echo "<td><a href='users.php?change_to_admin={$user_id}'>Admin</a></td>";
+        echo "<td><a href='users.php?change_to_sub={$user_id}'>Subscriber</a></td>";
         echo "<td><a href='users.php?delete={$user_id}'>Delete</a></td>";
         echo "</tr>";
     }
@@ -41,6 +45,19 @@
 </table>
 
 <?php
+if (isset($_GET['change_to_admin'])) {
+    $the_user_id = $_GET['change_to_admin'];
+    $query = "UPDATE user SET role = 'admin' WHERE user_id = {$the_user_id}";
+    $grant_admin = mysqli_query($conn, $query);
+    header("location: users.php");
+}
+
+if (isset($_GET['change_to_sub'])) {
+    $the_user_id = $_GET['change_to_sub'];
+    $query = "UPDATE user SET role = 'subscriber' WHERE user_id = {$the_user_id}";
+    $withdraw_admin = mysqli_query($conn, $query);
+    header("location: users.php");
+}
 
 if (isset($_GET['delete'])) {
     $the_user_id = $_GET['delete'];
