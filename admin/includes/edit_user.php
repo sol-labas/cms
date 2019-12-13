@@ -16,25 +16,31 @@ if (isset($_GET['edit_user'])) {
     }
 }
 
-//if(isset($_POST['edit_user'])){
-//$user_id = $_POST['user_id'];
-//$first_name = $_POST['first_name'];
-//$last_name = $_POST['last_name'];
-//$role = $_POST['role'];
-//$username = $_POST['username'];
-//$email = $_POST['email'];
-//$password = $_POST['password'];
-//$user_image_temp = $_FILES['user_image']['tmp_name'];
-//$user_image = $_POST['user_image'];
-// $post_date = date('d-m-y');
+if (isset($_POST['edit_user'])) {
+    $first_name = $_POST['first_name'];
+    $last_name = $_POST['last_name'];
+    $role = $_POST['role'];
+    $username = $_POST['username'];
+    //$post_image = $_FILES['post_image']['name'];
+    // $post_image_temp = $_FILES['post_image']['tmp_name'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
-//move_uploaded_file($user_image_temp, "../images/$user_image");
+    //move_uploaded_file($post_image_temp, "../images/$post_image");
 
-// $query = "INSERT INTO user (username, password, first_name, last_name, email, user_image, role ) VALUES ('{$username}', '{$password}', '{$first_name}', '{$last_name}', '{$email}', '{$user_image}', '{$role}')";
-// $create_user_query = mysqli_query($conn, $query);
+    //if (empty($post_image)) {
+    //    $query = "SELECT * FROM post WHERE post_id = {$post_id}";
+    //   $select_image = mysqli_query($conn, $query);
+    //     while ($row = mysqli_fetch_assoc($select_image)) {
+    //         $post_image = $row['post_image'];
+    //     }
+    // }
 
-// confirm($create_user_query);
-//}
+    $query = "UPDATE user SET user_id='{$user_id}', first_name = '{$first_name}', last_name ='{$last_name}', role ='{$role}', username = '{$username}', email = '{$email}', password ='{$password}' WHERE user_id = {$the_user_id}";
+    $update_user_query = mysqli_query($conn, $query);
+
+    confirm($update_user_query);
+}
 ?>
 
 <form action="" method="post" enctype="multipart/form-data">
@@ -53,7 +59,7 @@ if (isset($_GET['edit_user'])) {
         <br>
         <select name="role" id="role">
 
-            <option value='admin'><?php echo $role; ?>></option>
+            <option value='admin'><?php echo strtoupper($role); ?></option>
             <?php
             if ($role == 'admin') {
                 echo "<option value='subscriber'>Subscriber</option>>";
