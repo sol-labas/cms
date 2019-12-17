@@ -1,19 +1,22 @@
 <?php
-if (isset($_GET['edit_user'])) {
-    $the_user_id = $_GET['edit_user'];
+if (!isset($_GET['edit_user'])) {
+    header("Location: users.php");
+    exit();
+}
 
-    $query = "SELECT * FROM user WHERE user_id= {$the_user_id}";
-    $select_users = mysqli_query($conn, $query);
-    while ($row = mysqli_fetch_assoc($select_users)) {
-        $user_id = (int)$row['user_id'];
-        $username = $row['username'];
-        $first_name = $row['first_name'];
-        $last_name = $row['last_name'];
-        $email = $row['email'];
-        $user_image = $row['user_image'];
-        $role = $row['role'];
-        $password = $row['password'];
-    }
+$the_user_id = $_GET['edit_user'];
+
+$query = "SELECT * FROM user WHERE user_id= {$the_user_id}";
+$select_users = mysqli_query($conn, $query);
+while ($row = mysqli_fetch_assoc($select_users)) {
+    $user_id = (int)$row['user_id'];
+    $username = $row['username'];
+    $first_name = $row['first_name'];
+    $last_name = $row['last_name'];
+    $email = $row['email'];
+    $user_image = $row['user_image'];
+    $role = $row['role'];
+    $password = $row['password'];
 }
 
 if (isset($_POST['edit_user'])) {
@@ -21,22 +24,19 @@ if (isset($_POST['edit_user'])) {
     $last_name = $_POST['last_name'];
     $role = $_POST['role'];
     $username = $_POST['username'];
-    //$post_image = $_FILES['post_image']['name'];
-    // $post_image_temp = $_FILES['post_image']['tmp_name'];
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    //move_uploaded_file($post_image_temp, "../images/$post_image");
 
-    //if (empty($post_image)) {
-    //    $query = "SELECT * FROM post WHERE post_id = {$post_id}";
-    //   $select_image = mysqli_query($conn, $query);
-    //     while ($row = mysqli_fetch_assoc($select_image)) {
-    //         $post_image = $row['post_image'];
-    //     }
-    // }
+    if (empty($_FILES['user_image'])) {
+        $user_image = $row['user_image'];
+    } else {
+        $user_image = $_FILES['user_image']['name'];
+        $user_image_temp = $_FILES['user_image']['tmp_name'];
+        move_uploaded_file($user_image_temp, "../images/$user_image");
+    }
 
-    $query = "UPDATE user SET user_id='{$user_id}', first_name = '{$first_name}', last_name ='{$last_name}', role ='{$role}', username = '{$username}', email = '{$email}', password ='{$password}' WHERE user_id = {$the_user_id}";
+    $query = "UPDATE user SET first_name = '{$first_name}', last_name ='{$last_name}', role ='{$role}', username = '{$username}', user_image = '{$user_image}' , email = '{$email}', password ='{$password}' WHERE user_id = {$the_user_id}";
     $update_user_query = mysqli_query($conn, $query);
 
     confirm($update_user_query);

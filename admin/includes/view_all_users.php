@@ -34,7 +34,7 @@
         echo "<td>{$first_name}</td>";
         echo "<td>{$last_name}</td>";
         echo "<td>{$email}</td>";
-        echo "<td>{$user_image}</td>";
+        echo "<td><img width='100' src='../images/$user_image'></td>";
         echo "<td>{$role}</td>";
         echo "<td><a href='users.php?change_to_admin={$user_id}'>Admin</a></td>";
         echo "<td><a href='users.php?change_to_sub={$user_id}'>Subscriber</a></td>";
