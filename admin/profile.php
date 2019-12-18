@@ -17,7 +17,28 @@ if (isset($_SESSION['username'])) {
         $password = $row['password'];
 
     }
+    if (isset($_POST['edit_user'])) {
+        $first_name = $_POST['first_name'];
+        $last_name = $_POST['last_name'];
+        $role = $_POST['role'];
+        $username = $_POST['username'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
 
+
+        if (empty($_FILES['user_image'])) {
+            $user_image = $row['user_image'];
+        } else {
+            $user_image = $_FILES['user_image']['name'];
+            $user_image_temp = $_FILES['user_image']['tmp_name'];
+            move_uploaded_file($user_image_temp, "../images/$user_image");
+        }
+
+        $query = "UPDATE user SET first_name = '{$first_name}', last_name ='{$last_name}', role ='{$role}', username = '{$username}', user_image = '{$user_image}' , email = '{$email}', password ='{$password}' WHERE username = '{$username}'";
+        $update_user_query = mysqli_query($conn, $query);
+
+        confirm($update_user_query);
+    }
 
 }
 
