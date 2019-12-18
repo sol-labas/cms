@@ -1,6 +1,13 @@
 
 <?php ob_start();
-session_start(); ?>
+session_start();
+if(isset($_SESSION['role'])){
+    if($_SESSION['role']!=='admin'){
+        header("Location: ..//index.php");
+    }
+}
+
+?>
 <?php
 include "../includes/db.php";
 include "function.php";
