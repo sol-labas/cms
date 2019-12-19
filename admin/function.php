@@ -11,7 +11,7 @@ function insert_categories()
 {
     global $conn;
     if (isset($_POST['submit'])) {
-        $cat_title = $_POST['cat_title'];
+        $cat_title = mysqli_escape_string($_POST['cat_title']);
         if ($cat_title == '' || empty($cat_title)) {
             echo "Fill the field";
         } else {
@@ -45,7 +45,7 @@ function select_all_cat(){
 function delete_cat(){
     global $conn;
     if (isset($_GET['delete'])) {
-        $the_cat_id = $_GET['delete'];
+        $the_cat_id = (int)$_GET['delete'];
         $query = "DELETE FROM category WHERE cat_id = {$the_cat_id}";
         $delete_cat = mysqli_query($conn, $query);
         header("location: categories.php");

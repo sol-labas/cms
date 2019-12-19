@@ -48,21 +48,21 @@
 
 <?php
 if (isset($_GET['change_to_admin'])) {
-    $the_user_id = $_GET['change_to_admin'];
+    $the_user_id = (int)$_GET['change_to_admin'];
     $query = "UPDATE user SET role = 'admin' WHERE user_id = {$the_user_id}";
     $grant_admin = mysqli_query($conn, $query);
     header("location: users.php");
 }
 
 if (isset($_GET['change_to_sub'])) {
-    $the_user_id = $_GET['change_to_sub'];
+    $the_user_id = (int)$_GET['change_to_sub'];
     $query = "UPDATE user SET role = 'subscriber' WHERE user_id = {$the_user_id}";
     $withdraw_admin = mysqli_query($conn, $query);
     header("location: users.php");
 }
 
 if (isset($_GET['delete'])) {
-    $the_user_id = $_GET['delete'];
+    $the_user_id = (int)$_GET['delete'];
     $query = "DELETE FROM user WHERE user_id = {$the_user_id}";
     $delete_user = mysqli_query($conn, $query);
     header("location: users.php");

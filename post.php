@@ -16,11 +16,7 @@ include_once "includes/navigation.php";
         <!-- Blog Entries Column -->
         <div class="col-md-8">
             <?php
-
-            if (isset($_GET['p_id'])) {
-                $the_post_id = $_GET['p_id'];
-            }
-
+            $the_post_id = (int)$_GET['p_id'];
             $query = "SELECT * FROM post WHERE post_id = {$the_post_id}";
 
             $all_post = mysqli_query($conn, $query);
@@ -59,10 +55,10 @@ include_once "includes/navigation.php";
                 <?php
             }
             if (isset($_POST['create_comm'])) {
-                $the_post_id = $_GET['p_id'];
-                $comm_author = $_POST['comm_author'];
-                $comm_email = $_POST['comm_email'];
-                $comm_content = $_POST['comm_content'];
+                $the_post_id = (int)$_GET['p_id'];
+                $comm_author = mysqli_escape_string($_POST['comm_author']);
+                $comm_email = mysqli_escape_string($_POST['comm_email']);
+                $comm_content = mysqli_escape_string($_POST['comm_content']);
 
                 $query = "INSERT INTO comment (comm_post_id, comm_author, comm_email, comm_content, comm_date) VALUES ('{$the_post_id}', '{$comm_author}', '{$comm_email}', '{$comm_content}', now()) ";
                 $create_comm_query = mysqli_query($conn, $query);

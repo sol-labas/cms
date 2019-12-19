@@ -4,7 +4,7 @@ if (!isset($_GET['edit_user'])) {
     exit();
 }
 
-$the_user_id = $_GET['edit_user'];
+$the_user_id = (int)$_GET['edit_user'];
 
 $query = "SELECT * FROM user WHERE user_id= {$the_user_id}";
 $select_users = mysqli_query($conn, $query);
@@ -20,12 +20,12 @@ while ($row = mysqli_fetch_assoc($select_users)) {
 }
 
 if (isset($_POST['edit_user'])) {
-    $first_name = $_POST['first_name'];
-    $last_name = $_POST['last_name'];
-    $role = $_POST['role'];
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $first_name = mysqli_escape_string($_POST['first_name']);
+    $last_name = mysqli_escape_string($_POST['last_name']);
+    $role = mysqli_escape_string($_POST['role']);
+    $username = mysqli_escape_string($_POST['username']);
+    $email = mysqli_escape_string($_POST['email']);
+    $password = mysqli_escape_string($_POST['password']);
 
 
     if (empty($_FILES['user_image'])) {
@@ -36,6 +36,7 @@ if (isset($_POST['edit_user'])) {
         move_uploaded_file($user_image_temp, "../images/$user_image");
     }
 
+    $user_image = mysqli_escape_string($user_image_temp);
     $query = "UPDATE user SET first_name = '{$first_name}', last_name ='{$last_name}', role ='{$role}', username = '{$username}', user_image = '{$user_image}' , email = '{$email}', password ='{$password}' WHERE user_id = {$the_user_id}";
     $update_user_query = mysqli_query($conn, $query);
 

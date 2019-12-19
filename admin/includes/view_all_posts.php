@@ -23,7 +23,7 @@
         $post_id = (int)$row['post_id'];
         $post_author = $row['post_author'];
         $post_title = $row['post_title'];
-        $post_category_id = $row['post_category_id'];
+        $post_category_id = (int)$row['post_category_id'];
         $post_status = $row['post_status'];
         $post_image = $row['post_image'];
         $post_tags = $row['post_tags'];
@@ -63,7 +63,7 @@
 
 <?php
 if (isset($_GET['delete'])) {
-    $the_post_id = $_GET['delete'];
+    $the_post_id = (int)$_GET['delete'];
     $query = "DELETE FROM post WHERE post_id = {$the_post_id}";
     $delete_post = mysqli_query($conn, $query);
     header("location: posts.php");

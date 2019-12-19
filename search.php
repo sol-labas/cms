@@ -18,7 +18,7 @@ include_once "includes/navigation.php";
 
 
             if (isset($_POST['submit'])) {
-                $search = $_POST['search'];
+                $search = mysqli_escape_string($_POST['search']);
                 $query = "SELECT * FROM post WHERE post_tags LIKE '%$search%' ";
                 $search_query = mysqli_query($conn, $query);
 
