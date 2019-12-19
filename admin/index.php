@@ -98,7 +98,13 @@ include_once "includes/admin_navigation.php";
                                     <i class="fa fa-user fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class='huge'>23</div>
+                                    <?php
+                                    $query = "SELECT * FROM user";
+                                    $select_all_users = mysqli_query($conn, $query);
+                                    $user_count = mysqli_num_rows($select_all_users);
+
+                                    ?>
+                                    <div class='huge'><?php echo $user_count; ?></div>
                                     <div> Users</div>
                                 </div>
                             </div>
@@ -120,7 +126,13 @@ include_once "includes/admin_navigation.php";
                                     <i class="fa fa-list fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class='huge'>13</div>
+                                    <?php
+                                    $query = "SELECT * FROM category";
+                                    $select_all_categories = mysqli_query($conn, $query);
+                                    $category_count = mysqli_num_rows($select_all_categories);
+
+                                    ?>
+                                    <div class='huge'><?php echo $category_count; ?></div>
                                     <div>Categories</div>
                                 </div>
                             </div>
