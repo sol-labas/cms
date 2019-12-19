@@ -159,11 +159,15 @@ include_once "includes/admin_navigation.php";
                             ['', ''],
 
                             <?php
-                            
+                            $element_text = ['Active posts', 'Comments', 'Users', 'Categories' ];
+                            $element_count = [$posts_count, $comm_count, $user_count, $category_count];
 
+                            for ($i = 0; $i < 4; $i++) {
+                                echo "['{$element_text[$i]}'" . "," . "{$element_count[$i]}],";
+                            }
                             ?>
 
-                            ['', ''],
+                 //           ['', ''],
                         ]);
 
                         var options = {
