@@ -2,7 +2,7 @@
 include_once "includes/admin_header.php";
 if (isset($_SESSION['username'])) {
 
-    $username = $_SESSION['username'];
+    $username = mysqli_escape_string($_SESSION['username']);
     $query = "SELECT * FROM user WHERE username = '{$username}'";
     $select_profile = mysqli_query($conn, $query);
 
@@ -18,12 +18,12 @@ if (isset($_SESSION['username'])) {
 
     }
     if (isset($_POST['edit_user'])) {
-        $first_name = $_POST['first_name'];
-        $last_name = $_POST['last_name'];
-        $role = $_POST['role'];
-        $username = $_POST['username'];
-        $email = $_POST['email'];
-        $password = $_POST['password'];
+        $first_name = mysqli_escape_string($_POST['first_name']);
+        $last_name = mysqli_escape_string($_POST['last_name']);
+        $role = mysqli_escape_string($_POST['role']);
+        $username = mysqli_escape_string($_POST['username']);
+        $email = mysqli_escape_string($_POST['email']);
+        $password = mysqli_escape_string($_POST['password']);
 
 
         if (empty($_FILES['user_image'])) {

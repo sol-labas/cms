@@ -16,11 +16,7 @@ include_once "includes/navigation.php";
             <div class="col-md-8">
 <?php
 
-if(isset($_GET['category'])){
-    $post_category_id = $_GET['category'];
-
-
-}
+        $post_category_id = (int)$_GET['category'];
         $query = "SELECT * FROM post WHERE post_category_id = $post_category_id";
         $all_post = mysqli_query($conn, $query);
 
