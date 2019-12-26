@@ -4,7 +4,7 @@ if (isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $username = mysqli_escape_string(mysqli_real_escape_string($conn, $username));
+    $username = mysqli_escape_string($conn, $username);
     $password = mysqli_real_escape_string($conn, $password);
 
     $query = "SELECT * FROM user WHERE username = '{$username}'";
@@ -29,6 +29,7 @@ if (isset($_POST['login'])) {
         $_SESSION['role'] = $db_role;
         header("Location: ../admin");
     } else {
+        die('error');
         header("Location: ../index.php");
     }
 }
