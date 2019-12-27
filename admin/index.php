@@ -150,6 +150,10 @@ include_once "includes/admin_navigation.php";
             <!--/.row -->
 
             <?php
+            $query = "SELECT * FROM post WHERE post_status = 'published' ";
+            $select_published_posts = mysqli_query($conn, $query);
+            $posts_published_count = mysqli_num_rows($select_published_posts);
+
             $query = "SELECT * FROM post WHERE post_status = 'draft' ";
             $select_draft_posts = mysqli_query($conn, $query);
             $posts_draft_count = mysqli_num_rows($select_draft_posts);
@@ -174,10 +178,10 @@ include_once "includes/admin_navigation.php";
                             ['', ''],
 
                             <?php
-                            $element_text = ['Active posts', 'Draft posts', 'Comments', 'Pending comments', 'Users', 'Subscribers', 'Categories' ];
-                            $element_count = [$posts_count, $posts_draft_count, $comm_count, $comm_draft_count, $user_count, $user_subscriber_count, $category_count];
+                            $element_text = ['All posts','Active posts', 'Draft posts', 'Comments', 'Pending comments', 'Users', 'Subscribers', 'Categories' ];
+                            $element_count = [$posts_count, $posts_published_count, $posts_draft_count, $comm_count, $comm_draft_count, $user_count, $user_subscriber_count, $category_count];
 
-                            for ($i = 0; $i < 7; $i++) {
+                            for ($i = 0; $i < 8; $i++) {
                                 echo "['{$element_text[$i]}'" . "," . "{$element_count[$i]}],";
                             }
                             ?>
