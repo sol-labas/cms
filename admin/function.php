@@ -11,7 +11,7 @@ function insert_categories()
 {
     global $conn;
     if (isset($_POST['submit'])) {
-        $cat_title = mysqli_escape_string($_POST['cat_title']);
+        $cat_title = mysqli_escape_string($conn, $_POST['cat_title']);
         if ($cat_title == '' || empty($cat_title)) {
             echo "Fill the field";
         } else {

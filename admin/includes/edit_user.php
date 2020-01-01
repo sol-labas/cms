@@ -20,12 +20,12 @@ while ($row = mysqli_fetch_assoc($select_users)) {
 }
 
 if (isset($_POST['edit_user'])) {
-    $first_name = mysqli_escape_string($_POST['first_name']);
-    $last_name = mysqli_escape_string($_POST['last_name']);
-    $role = mysqli_escape_string($_POST['role']);
-    $username = mysqli_escape_string($_POST['username']);
-    $email = mysqli_escape_string($_POST['email']);
-    $password = mysqli_escape_string($_POST['password']);
+    $first_name = mysqli_escape_string($conn, $_POST['first_name']);
+    $last_name = mysqli_escape_string($conn, $_POST['last_name']);
+    $role = mysqli_escape_string($conn, $_POST['role']);
+    $username = mysqli_escape_string($conn, $_POST['username']);
+    $email = mysqli_escape_string($conn, $_POST['email']);
+    $password = mysqli_escape_string($conn, $_POST['password']);
 
 
     if (empty($_FILES['user_image'])) {
@@ -36,7 +36,7 @@ if (isset($_POST['edit_user'])) {
         move_uploaded_file($user_image_temp, "../images/$user_image");
     }
 
-    $user_image = mysqli_escape_string($user_image_temp);
+    $user_image = mysqli_escape_string($conn, $user_image_temp);
     $query = "UPDATE user SET first_name = '{$first_name}', last_name ='{$last_name}', role ='{$role}', username = '{$username}', user_image = '{$user_image}' , email = '{$email}', password ='{$password}' WHERE user_id = {$the_user_id}";
     $update_user_query = mysqli_query($conn, $query);
 

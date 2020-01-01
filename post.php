@@ -54,9 +54,9 @@ include_once "includes/navigation.php";
             }
             if (isset($_POST['create_comm'])) {
                 $the_post_id = (int)$_GET['p_id'];
-                $comm_author = mysqli_escape_string($_POST['comm_author']);
-                $comm_email = mysqli_escape_string($_POST['comm_email']);
-                $comm_content = mysqli_escape_string($_POST['comm_content']);
+                $comm_author = mysqli_escape_string($conn, $_POST['comm_author']);
+                $comm_email = mysqli_escape_string($conn, $_POST['comm_email']);
+                $comm_content = mysqli_escape_string($conn, $_POST['comm_content']);
 
                 $query = "INSERT INTO comment (comm_post_id, comm_author, comm_email, comm_content, comm_date) VALUES ('{$the_post_id}', '{$comm_author}', '{$comm_email}', '{$comm_content}', now()) ";
                 $create_comm_query = mysqli_query($conn, $query);

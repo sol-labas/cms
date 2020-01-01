@@ -18,7 +18,7 @@
 
         <?php
         if(isset($_POST['edit_category'])){
-            $the_cat_title = mysqli_escape_string($_POST['cat_title']);
+            $the_cat_title = mysqli_escape_string($conn, $_POST['cat_title']);
             $query = "UPDATE category SET cat_title = '{$the_cat_title}' WHERE cat_id = {$cat_id}";
             $update_cat = mysqli_query($conn, $query);
             if(!$update_cat){

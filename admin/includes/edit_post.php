@@ -16,18 +16,18 @@ while ($row = mysqli_fetch_assoc($select_post_by_id)) {
 }
 
 if (isset($_POST['update_post'])) {
-    $post_title = mysqli_escape_string($_POST['post_title']);
-    $post_author = mysqli_escape_string($_POST['post_author']);
-    $post_category_id = mysqli_escape_string($_POST['post_category_id']);
-    $post_status = mysqli_escape_string($_POST['post_status']);
+    $post_title = mysqli_escape_string($conn, $_POST['post_title']);
+    $post_author = mysqli_escape_string($conn, $_POST['post_author']);
+    $post_category_id = mysqli_escape_string($conn, $_POST['post_category_id']);
+    $post_status = mysqli_escape_string($conn, $_POST['post_status']);
     $post_image = $_FILES['post_image']['name'];
     $post_image_temp = $_FILES['post_image']['tmp_name'];
-    $post_tags = mysqli_escape_string($_POST['post_tags']);
-    $post_content = mysqli_escape_string($_POST['post_content']);
+    $post_tags = mysqli_escape_string($conn, $_POST['post_tags']);
+    $post_content = mysqli_escape_string($conn, $_POST['post_content']);
 
     move_uploaded_file($post_image_temp, "../images/$post_image");
 
-    $post_image = mysqli_escape_string($post_image);
+    $post_image = mysqli_escape_string($conn, $post_image);
 
     if (empty($post_image)) {
         $query = "SELECT * FROM post WHERE post_id = {$post_id}";
@@ -41,6 +41,10 @@ if (isset($_POST['update_post'])) {
     $update_post_query = mysqli_query($conn, $query);
 
     confirm($update_post_query);
+
+    echo "<p> Post Updated. <a href='../post.php?p_id={$post_id}'>View Post</a></p>";
+
+
 }
 ?>
 
@@ -107,7 +111,7 @@ if (isset($_POST['update_post'])) {
 
     <div class="form-group">
         <label for="post_content">Post Content</label>
-        <textarea class="form-control" name="post_content" id="" cols="30"
+        <textarea class="form-control" name="post_content" id="body" cols="30"
                   rows="10"><?php echo $post_content ?></textarea>
     </div>
 

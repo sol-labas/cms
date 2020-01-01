@@ -2,12 +2,12 @@
 if(isset($_POST['create_user'])){
 
     //$user_id = $_POST['user_id'];
-    $first_name = mysqli_escape_string($_POST['first_name']);
-    $last_name = mysqli_escape_string($_POST['last_name']);
-    $role = mysqli_escape_string($_POST['role']);
-    $username = mysqli_escape_string($_POST['username']);
-    $email = mysqli_escape_string($_POST['email']);
-    $password = mysqli_escape_string($_POST['password']);
+    $first_name = mysqli_escape_string($conn, $_POST['first_name']);
+    $last_name = mysqli_escape_string($conn, $_POST['last_name']);
+    $role = mysqli_escape_string($conn, $_POST['role']);
+    $username = mysqli_escape_string($conn, $_POST['username']);
+    $email = mysqli_escape_string($conn, $_POST['email']);
+    $password = mysqli_escape_string($conn, $_POST['password']);
     $user_image_temp = $_FILES['user_image']['tmp_name'];
     $user_image = $_FILES['user_image']['name'];
    // $post_date = date('d-m-y');
