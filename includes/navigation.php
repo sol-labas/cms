@@ -2,7 +2,8 @@
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -18,7 +19,7 @@
                 $query = "SELECT * FROM category";
                 $all_cat = mysqli_query($conn, $query);
 
-                while($row = mysqli_fetch_assoc($all_cat)){
+                while ($row = mysqli_fetch_assoc($all_cat)) {
                     $cat_title = $row['cat_title'];
 
                     echo "<li><a href='#'>{$cat_title}</a> </li>";
@@ -27,6 +28,16 @@
                 <li>
                     <a href="admin">Admin</a>
                 </li>
+
+                <?php
+                if (isset($_SESSION['role'])) {
+                    if (isset($_GET['p_id'])) {
+                        $the_post_id = $_GET['p_id'];
+                        echo "<li><a href='admin/posts.php?source=edit_post&p_id={$the_post_id}'>Edit Post</a></li>";
+                    }
+                }
+
+                ?>
 
             </ul>
         </div>
