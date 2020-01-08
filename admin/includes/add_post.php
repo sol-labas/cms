@@ -1,5 +1,5 @@
 <?php
-if(isset($_POST['create_post'])){
+if (isset($_POST['create_post'])) {
     $post_title = mysqli_escape_string($conn, $_POST['post_title']);
     $post_author = mysqli_escape_string($conn, $_POST['post_author']);
     $post_category_id = mysqli_escape_string($conn, $_POST['post_category_id']);
@@ -54,7 +54,12 @@ if(isset($_POST['create_post'])){
 
     <div class="form-group">
         <label for="post_status">Post Status</label>
-        <input type="text" class="form-control" name="post_status">
+        <select name="post_status" id="">
+            <option value="draft">Select Option</option>
+            <option value="published">Publish</option>
+            <option value="draft">Draft</option>
+        </select>
+
     </div>
 
     <div class="form-group">
@@ -75,7 +80,6 @@ if(isset($_POST['create_post'])){
     <div class="form-group">
         <input class="btn btn-primary" type="submit" name="create_post" value="Publish Post">
     </div>
-
 
 
 </form>
