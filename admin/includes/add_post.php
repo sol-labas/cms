@@ -18,6 +18,10 @@ if (isset($_POST['create_post'])) {
     $create_post_query = mysqli_query($conn, $query);
 
     confirm($create_post_query);
+
+    $post_id = mysqli_insert_id($conn);
+
+    echo "<p class='bg-success'> Post Created. <a href='../post.php?p_id={$post_id}'>View Post</a> or <a href='posts.php'>Edit</a></p>";
 }
 ?>
 
