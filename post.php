@@ -59,16 +59,20 @@ include_once "includes/navigation.php";
                 $comm_email = mysqli_escape_string($conn, $_POST['comm_email']);
                 $comm_content = mysqli_escape_string($conn, $_POST['comm_content']);
 
-                $query = "INSERT INTO comment (comm_post_id, comm_author, comm_email, comm_content, comm_date) VALUES ('{$the_post_id}', '{$comm_author}', '{$comm_email}', '{$comm_content}', now()) ";
-                $create_comm_query = mysqli_query($conn, $query);
+                if (!empty($comm_author) && (!empty($comm_content)) && (!empty($comm_email))) {
 
-                confirm($create_comm_query);
+                    $query = "INSERT INTO comment (comm_post_id, comm_author, comm_email, comm_content, comm_date) VALUES ('{$the_post_id}', '{$comm_author}', '{$comm_email}', '{$comm_content}', now()) ";
+                    $create_comm_query = mysqli_query($conn, $query);
 
-                $query = "UPDATE post SET post_comm_count = post_comm_count+1 WHERE post_id = {$the_post_id}";
-                $update_comm_count = mysqli_query($conn, $query);
+                    confirm($create_comm_query);
 
-                confirm($update_comm_count);
+                    $query = "UPDATE post SET post_comm_count = post_comm_count+1 WHERE post_id = {$the_post_id}";
+                    $update_comm_count = mysqli_query($conn, $query);
 
+                    confirm($update_comm_count);
+                } else {
+                    echo "<script>alert('Fields cannot be empty!')</script>";
+                }
             }
 
             ?>
@@ -97,17 +101,17 @@ include_once "includes/navigation.php";
             <!-- Posted Comments -->
 
 
-                <?php
-$query = "SELECT * FROM comment WHERE comm_post_id = {$the_post_id} AND comm_status = 'approved' ORDER BY comm_id DESC";
-$select_comm_query = mysqli_query($conn, $query);
-if(!$select_comm_query){
-    die ('Query failed' . mysqli_error($conn));
-}
-while($row = mysqli_fetch_array($select_comm_query)){
-    $comm_date = $row['comm_date'];
-    $comm_content = $row['comm_content'];
-    $comm_author = $row['comm_author'];
-?>
+            <?php
+            $query = "SELECT * FROM comment WHERE comm_post_id = {$the_post_id} AND comm_status = 'approved' ORDER BY comm_id DESC";
+            $select_comm_query = mysqli_query($conn, $query);
+            if (!$select_comm_query) {
+                die ('Query failed' . mysqli_error($conn));
+            }
+            while ($row = mysqli_fetch_array($select_comm_query)) {
+                $comm_date = $row['comm_date'];
+                $comm_content = $row['comm_content'];
+                $comm_author = $row['comm_author'];
+                ?>
                 <!-- Comment -->
                 <div class="media">
                     <a class="pull-left" href="#">
@@ -121,9 +125,9 @@ while($row = mysqli_fetch_array($select_comm_query)){
                     </div>
                 </div>
 
-<?php
-}
-                ?>
+                <?php
+            }
+            ?>
 
         </div>
 
