@@ -12,6 +12,16 @@ $username = mysqli_real_escape_string($conn, $_POST['username']);
 $email = mysqli_real_escape_string($conn, $_POST['email']);
 $password =mysqli_real_escape_string($conn, $_POST['password']);
 
+   $query = "SELECT randSalt FROM user";
+   $select_salt = mysqli_query($conn, $query);
+
+
+       "INSERT INTO user (username, password, first_name, last_name, email, user_image, role ) VALUES ('{$username}', '{$password}', '{$first_name}', '{$last_name}', '{$email}', '{$user_image}', '{$role}')";
+    $create_user_query = mysqli_query($conn, $query);
+
+    confirm($create_user_query);
+
+    echo "User created " . " " . "<a href='user.php'>View Users</a>";
 
 }
 
