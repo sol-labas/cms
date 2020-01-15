@@ -12,18 +12,22 @@ if (isset($_POST['submit'])) {
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
 
-    $query = "SELECT randSalt FROM user";
-    $select_salt = mysqli_query($conn, $query);
-    $row = mysqli_fetch_array($select_salt);
-    $salt = $row['randSalt'];
+    if (!empty($username) && !empty($email) && !empty($password)) {
 
-    $query = "INSERT INTO user (username, password, email, role ) VALUES ('{$username}', '{$password}', '{$email}', 'subscriber')";
-    $create_user_query = mysqli_query($conn, $query);
+        $query = "SELECT randSalt FROM user";
+        $select_salt = mysqli_query($conn, $query);
+        $row = mysqli_fetch_array($select_salt);
+        $salt = $row['randSalt'];
 
-    confirm($create_user_query);
+        $query = "INSERT INTO user (username, password, email, role ) VALUES ('{$username}', '{$password}', '{$email}', 'subscriber')";
+        $create_user_query = mysqli_query($conn, $query);
 
-    echo "User created " . " " . "<a href='user.php'>View Users</a>";
+        confirm($create_user_query);
 
+        echo "User created";
+    } else {
+        echo "<script>alert('Fields cannot be empty!')</script>";
+    }
 }
 
 ?>
