@@ -1,5 +1,6 @@
 <?php include "includes/db.php"; ?>
 <?php include "includes/header.php"; ?>
+<?php include_once "admin/function.php"?>
 
 
 <!-- Navigation -->
@@ -14,10 +15,12 @@ if (isset($_POST['submit'])) {
 
     if (!empty($username) && !empty($email) && !empty($password)) {
 
-        $query = "SELECT randSalt FROM user";
+        $query = "SELECT rand_salt FROM user";
         $select_salt = mysqli_query($conn, $query);
         $row = mysqli_fetch_array($select_salt);
-        $salt = $row['randSalt'];
+        $salt = $row['rand_salt'];
+
+        $password = crypt($password, $salt);
 
         $query = "INSERT INTO user (username, password, email, role ) VALUES ('{$username}', '{$password}', '{$email}', 'subscriber')";
         $create_user_query = mysqli_query($conn, $query);
