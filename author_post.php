@@ -17,9 +17,16 @@ include_once "includes/navigation.php";
         <!-- Blog Entries Column -->
         <div class="col-md-8">
             <?php
-            $the_post_id = (int)$_GET['p_id'];
-            $query = "SELECT * FROM post WHERE post_id = {$the_post_id}";
 
+            if(isset($_GET['p_id'])){
+                $the_post_id = $_GET['p_id'];
+                $the_post_author = $_GET['author'];
+            }
+
+
+            $the_post_id = (int)$_GET['p_id'];
+            $the_post_author = mysqli_real_escape_string($conn, $the_post_author);
+            $query = "SELECT * FROM post WHERE post_author = '{$the_post_author}'";
             $all_post = mysqli_query($conn, $query);
 
             while ($row = mysqli_fetch_assoc($all_post)) {
