@@ -37,7 +37,20 @@ if (isset($_POST['edit_user'])) {
     }
 
     $user_image = mysqli_escape_string($conn, $user_image_temp);
-    $query = "UPDATE user SET first_name = '{$first_name}', last_name ='{$last_name}', role ='{$role}', username = '{$username}', user_image = '{$user_image}' , email = '{$email}', password ='{$password}' WHERE user_id = {$the_user_id}";
+
+    $query = "SELECT rand_salt FROM user";
+    $select_salt = mysqli_query($conn, $query);
+
+    if(!$select_salt){
+        die("Query Failed" . mysqli_error($conn));
+    }
+    $row = mysqli_fetch_array($select_salt);
+    $salt = $row['rand_salt'];
+
+    $crypt_password = crypt($password, $salt);
+
+
+    $query = "UPDATE user SET first_name = '{$first_name}', last_name ='{$last_name}', role ='{$role}', username = '{$username}', user_image = '{$user_image}' , email = '{$email}', password ='{$crypt_password}' WHERE user_id = {$the_user_id}";
     $update_user_query = mysqli_query($conn, $query);
 
     confirm($update_user_query);
