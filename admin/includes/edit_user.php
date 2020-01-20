@@ -73,7 +73,7 @@ if (isset($_POST['edit_user'])) {
         <br>
         <select name="role" id="role">
 
-            <option value='admin'><?php echo strtoupper($role); ?></option>
+            <option value='<?php echo $role; ?>'><?php echo $role; ?></option>
             <?php
             if ($role == 'admin') {
                 echo "<option value='subscriber'>subscriber</option>>";
